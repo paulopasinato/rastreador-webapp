@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <form class="form-inline my-2 my-md-0">
+          <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" href='/logout'>Logout</a>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container">
+        <h1>Encontre seu veículo</h1>
+        	<br/>
+	        <div class="bd-example">
+	        	<a class="btn btn-primary btn-danger active" role="button" aria-pressed="true" href='/block'>Bloquear</a>
+		        <a class="btn btn-primary btn-danger active" role="button" aria-pressed="true" href='/unblock'>Desbloquear</a>
+		    </div>
+        	<br/>
+          	<div id="map"></div>
+          	<br/>
+    </div>
+    
+    <script>
+      function initMap() {
+        var uluru = {lat: {{ lat }}, lng: {{ lon }} };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 19,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb7srd89Gx_HIrrydhBWkAFofb1nER9so&callback=initMap">
+    </script>
+  </body>
+</html>
